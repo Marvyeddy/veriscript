@@ -34,8 +34,8 @@ const Navlinks: NavlinkProps[] = [
     img: StethoscopeIcon,
   },
   {
-    text: "Patient",
-    href: "/dashboard/patient",
+    text: "Pharmacy",
+    href: "/dashboard/pharmacy",
     img: HeartPlus,
   },
   {
@@ -55,7 +55,7 @@ const AsideBar = () => {
   const active = `bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white`;
 
   return (
-    <div className="flex flex-col justify-between py-[54px] px-[23px] min-h-screen">
+    <div className="flex flex-col py-[54px] px-[23px] h-full justify-between">
       <div className="space-y-[31px]">
         <Image src={Logo} alt="logo" loading="lazy" />
 
