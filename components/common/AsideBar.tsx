@@ -55,38 +55,33 @@ const AsideBar = () => {
   const active = `bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white`;
 
   return (
-    <aside className="min-h-screen bg-white">
-      <div className="flex flex-col justify-between py-[54px] px-[23px] h-full ">
-        <div className="space-y-[31px]">
-          <Image src={Logo} alt="logo" loading="lazy" />
+    <div className="flex flex-col justify-between py-[54px] px-[23px] min-h-screen">
+      <div className="space-y-[31px]">
+        <Image src={Logo} alt="logo" loading="lazy" />
 
-          <ul className="flex flex-col gap-3">
-            {Navlinks.map((link, idx) => {
-              const Icon = link.img;
-              return (
-                <Link
-                  href={link.href}
-                  key={idx}
-                  className={`flex items-center gap-2 py-[10px] px-[24px] ${
-                    pathname === link.href ? active : ""
-                  }`}
-                >
-                  <Icon size={20} />
-                  <h3 className="font-sans">{link.text}</h3>
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
-
-        <Link
-          href={"/"}
-          className="flex items-center gap-1 py-[10px] px-[24px]"
-        >
-          <LogOut /> Logout
-        </Link>
+        <ul className="flex flex-col gap-3">
+          {Navlinks.map((link, idx) => {
+            const Icon = link.img;
+            return (
+              <Link
+                href={link.href}
+                key={idx}
+                className={`flex items-center gap-2 py-[10px] px-[24px] ${
+                  pathname === link.href ? active : ""
+                }`}
+              >
+                <Icon size={20} />
+                <h3 className="font-sans">{link.text}</h3>
+              </Link>
+            );
+          })}
+        </ul>
       </div>
-    </aside>
+
+      <Link href={"/"} className="flex items-center gap-1 py-[10px] px-[24px]">
+        <LogOut /> Logout
+      </Link>
+    </div>
   );
 };
 
