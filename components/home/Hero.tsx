@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 
 const Hero = () => {
   return (
-    <section className="relative max-lg:px-4">
+    <section className="relative max-lg:px-4 bg-[url(/images/grid.png)] bg-cover bg-no-repeat bg-center">
       <div className="min-lg:px-6 ">
         <Navbar />
       </div>
