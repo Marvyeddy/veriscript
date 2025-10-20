@@ -55,7 +55,7 @@ const AsideBar = () => {
   const active = `bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white`;
 
   return (
-    <aside className="min-h-screen">
+    <aside className="min-h-screen bg-white">
       <div className="flex flex-col justify-between py-[54px] px-[23px] h-full ">
         <div className="space-y-[31px]">
           <Image src={Logo} alt="logo" loading="lazy" />
