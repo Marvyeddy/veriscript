@@ -39,7 +39,7 @@ const Dashboard = () => {
   const active = "text-[#03B156] border-b-2 border-[#03B156]";
 
   return (
-    <div className="bg-[#F5F5F5] h-full px-4 sm:px-6 lg:px-[32px] py-4 sm:py-6 lg:py-[31px]">
+    <div className=" px-4 sm:px-6 lg:px-[32px] py-4 sm:py-6 lg:py-[31px]">
       <div className="mb-6 sm:mb-[24px]">
         <div className="font-jakarta mb-4 sm:mb-[14px]">
           <h2 className="text-lg sm:text-xl lg:text-[20px] font-semibold">
