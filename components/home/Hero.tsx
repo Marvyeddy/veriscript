@@ -22,12 +22,12 @@ const Hero = () => {
             </h2>
           </div>
 
-          <h1 className="font-jakarta text-[48px] leading-[107%] font-bold max-lg:text-center text-[#454861]">
+          <h1 className="font-jakarta text-[48px] leading-[107%] text-[#454861] font-bold max-lg:text-center">
             Get digital prescriptions from certified doctors and trusted
             pharmacies.
           </h1>
 
-          <p className="text-[18px] font-semibold font-jakarta leading-[107%] max-lg:text-center text-[#6F707E]">
+          <p className="text-[18px] font-semibold font-jakarta text-[#6F707E] leading-[107%] max-lg:text-center">
             Connect with certified medical professionals anytime, get
             personalized digital prescriptions, and access a network of trusted
             pharmacies for your medication needs.
