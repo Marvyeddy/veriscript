@@ -19,7 +19,7 @@ const Card = () => {
         <div className="flex gap-1 items-center">
           <Image src={Hbar} alt="hbar" loading="lazy" />
           <h2 className="text-white uppercase text-[32px] font-semibold font-jakarta tracking-tighter leading-[107%] max-md:text-3xl">
-            10,000.00HBAR
+            1,000.00HBAR
           </h2>
         </div>
 
