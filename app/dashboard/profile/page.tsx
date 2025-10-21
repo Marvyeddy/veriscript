@@ -34,8 +34,9 @@ const Diagnosis = [
 
 const ProfilePage = () => {
   return (
-    <section className="relative">
-      <div className="px-4 sm:px-[30px] pt-4 sm:pt-[22px] font-jakarta">
+    <section className="relative h-full">
+      {/* Scrollable container */}
+      <div className="px-4 sm:px-[30px] pt-4 sm:pt-[22px] font-jakarta max-h-[calc(100vh-100px)] overflow-y-auto pb-10">
         <h2 className="text-[16px] sm:text-[18px] font-semibold text-[#4D4D4D] mb-4 sm:mb-[20px]">
           Profile
         </h2>
@@ -244,12 +245,12 @@ const ProfilePage = () => {
                       ))}
                     </div>
 
-                    {/* Date (align with top) */}
+                    {/* Date */}
                     <div className="flex items-start">
                       <h2 className="text-sm text-[#808080]">{item.date}</h2>
                     </div>
 
-                    {/* Duration (align with top) */}
+                    {/* Duration */}
                     <div className="flex items-start">
                       <h2 className="text-sm text-[#808080]">
                         {item.duration}
