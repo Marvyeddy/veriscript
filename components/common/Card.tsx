@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const Card = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center flex-wrap p-4 ">
+    <div className="flex flex-col md:flex-row items-center flex-wrap  gap-[16px]">
       <div className=" w-full md:w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-gradient-to-tl from-[#004B24] via-[#00B155] to-[#00B155] relative overflow-hidden">
         <div className="flex items-center gap-1">
           <Image src={Wallet} alt="wallet" loading="lazy" />

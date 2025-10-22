@@ -25,9 +25,9 @@ const Dashboard = () => {
   const active = "text-[#03B156] border-b-2 border-[#03B156]";
 
   return (
-    <div className="px-4 sm:px-6 lg:px-[32px] py-4 sm:py-6 lg:py-[31px] h-full">
+    <div className="px-4 sm:px-6  py-4 sm:py-6 lg:py-[31px] h-full border">
       {/* Scrollable area (adjust 100px to match your header height) */}
-      <div className="font-jakarta max-h-[100vh] overflow-y-auto pb-10">
+      <div className="font-jakarta overflow-y-auto pb-10">
         {/* Greeting + Card Section */}
         <div className="mb-6 sm:mb-[24px]">
           <div className="mb-4 sm:mb-[14px]">
