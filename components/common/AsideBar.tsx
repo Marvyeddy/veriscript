@@ -22,6 +22,9 @@ type NavlinkProps = {
   img: LucideIcon;
 };
 
+interface AsideBarProps {
+  onNavigate?: () => void;
+}
 const Navlinks: NavlinkProps[] = [
   {
     text: "Dashboard",
@@ -34,7 +37,7 @@ const Navlinks: NavlinkProps[] = [
     img: StethoscopeIcon,
   },
   {
-    text: "Pharmacy",
+    text: "Pharmacist",
     href: "/dashboard/pharmacy",
     img: HeartPlus,
   },
@@ -50,7 +53,7 @@ const Navlinks: NavlinkProps[] = [
   },
 ];
 
-const AsideBar = () => {
+const AsideBar: React.FC<AsideBarProps> = ({ onNavigate }) => {
   const pathname = usePathname();
   const active = `bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white`;
 
@@ -65,6 +68,7 @@ const AsideBar = () => {
             return (
               <Link
                 href={link.href}
+                onClick={onNavigate}
                 key={idx}
                 className={`flex items-center gap-2 py-[10px] px-[24px] ${
                   pathname === link.href ? active : ""
