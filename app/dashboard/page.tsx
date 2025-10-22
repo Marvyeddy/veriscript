@@ -58,7 +58,7 @@ const Dashboard = () => {
 
       {/* Table Section */}
       <div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-3">
+        <div className="flex w-full flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-3">
           <h1 className="text-lg sm:text-xl lg:text-[20px] font-jakarta font-semibold text-[#4D4D4D]">
             Recent Activity
           </h1>

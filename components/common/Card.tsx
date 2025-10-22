@@ -9,8 +9,8 @@ import Image from "next/image";
 
 const Card = () => {
   return (
-    <div className="flex items-center gap-4 flex-wrap">
-      <div className="w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-gradient-to-tl from-[#004B24] via-[#00B155] to-[#00B155] relative overflow-hidden">
+    <div className="flex flex-col md:flex-row items-center flex-wrap p-4 ">
+      <div className=" w-full md:w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-gradient-to-tl from-[#004B24] via-[#00B155] to-[#00B155] relative overflow-hidden">
         <div className="flex items-center gap-1">
           <Image src={Wallet} alt="wallet" loading="lazy" />
           <h2 className="font-jarkata text-white">Wallet</h2>
@@ -30,7 +30,7 @@ const Card = () => {
       </div>
 
       {/* patient */}
-      <div className="w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-white">
+      <div className=" w-full md:w-[321px]  py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-white">
         <div className="flex items-center gap-1">
           <Image src={Aid} alt="aid" loading="lazy" />
           <h2 className="font-jarkata text-black font-semibold">Doctors</h2>
@@ -43,7 +43,7 @@ const Card = () => {
       </div>
 
       {/* pharm */}
-      <div className="w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-white">
+      <div className="w-full md:w-[321px] py-[23px] px-[21px] rounded-[12px] flex flex-col gap-[38px] bg-white">
         <div className="flex items-center gap-1">
           <Image src={Pharm} alt="pharm" loading="lazy" />
           <h2 className="font-jarkata text-black font-semibold">Pharmacy</h2>

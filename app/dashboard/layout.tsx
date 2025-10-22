@@ -12,6 +12,11 @@ import Ring from "@/public/assets/Bell.svg";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const handleNavigate = () => {
+    if (window.innerWidth < 1024) {
+      setIsSidebarOpen(false);
+    }
+  };
   return (
     <div className="flex min-h-screen">
       {/* Mobile Menu Button */}
@@ -38,7 +43,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         lg:translate-x-0 transition-transform duration-300 ease-in-out
       `}
       >
-        <AsideBar />
+        <AsideBar onNavigate={handleNavigate} />
       </div>
 
       {/* Main Content Area */}
