@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
 const styles = {
@@ -18,7 +19,10 @@ const Button = ({
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
-      className={`${styles[variants]} py-[10px] px-[14px] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-200 ${className}`}
+      className={cn(
+        `${styles[variants]} py-[10px] flex items-center gap-x-2 px-[14px] rounded-lg cursor-pointer hover:scale-105 transition-transform duration-200`,
+        `${className && className}`
+      )}
       {...props}
     >
       {children}

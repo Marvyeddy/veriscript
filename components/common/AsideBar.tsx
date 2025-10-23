@@ -1,77 +1,57 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import Logo from "@/public/assets/logo.svg";
 import {
-  BriefcaseMedical,
-  HeartPlus,
   LayoutDashboard,
-  LogOut,
-  LucideIcon,
   StethoscopeIcon,
-  UserCircle2,
+  HeartPlus,
   Wallet,
+  UserCircle2,
+  LogOut,
 } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-type NavlinkProps = {
-  text: string;
-  href: string;
-  img: LucideIcon;
-};
-
-interface AsideBarProps {
-  onNavigate?: () => void;
-}
-const Navlinks: NavlinkProps[] = [
-  {
-    text: "Dashboard",
-    href: "/dashboard",
-    img: LayoutDashboard,
-  },
-  {
-    text: "Doctor",
-    href: "/dashboard/doctor",
-    img: StethoscopeIcon,
-  },
-  {
-    text: "Pharmacist",
-    href: "/dashboard/pharmacy",
-    img: HeartPlus,
-  },
-  {
-    text: "Wallet",
-    href: "/dashboard/wallet",
-    img: Wallet,
-  },
-  {
-    text: "Profile",
-    href: "/dashboard/profile",
-    img: UserCircle2,
-  },
+const Navlinks = [
+  { text: "Dashboard", href: "/dashboard", img: LayoutDashboard },
+  { text: "Doctor", href: "/dashboard/doctor", img: StethoscopeIcon },
+  { text: "Pharmacist", href: "/dashboard/pharmacy", img: HeartPlus },
+  { text: "Wallet", href: "/dashboard/wallet", img: Wallet },
+  { text: "Profile", href: "/dashboard/profile", img: UserCircle2 },
 ];
 
-const AsideBar: React.FC<AsideBarProps> = ({ onNavigate }) => {
+const AsideBar = ({ onNavigate }: { onNavigate?: () => void }) => {
   const pathname = usePathname();
-  const active = `bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white`;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null; // 👈 prevents SSR mismatch
+
+  const active =
+    "bg-[#03B156] drop-shadow-2xs shadow-[#375DFB14] rounded-[10px] text-white";
 
   return (
     <div className="flex flex-col py-[54px] px-[23px] h-full justify-between">
       <div className="space-y-[31px]">
         <Image src={Logo} alt="logo" loading="lazy" />
-
         <ul className="flex flex-col gap-3">
           {Navlinks.map((link, idx) => {
             const Icon = link.img;
+            const isActive =
+              pathname === link.href ||
+              (pathname.startsWith(link.href + "/") &&
+                link.href !== "/dashboard");
+
             return (
               <Link
                 href={link.href}
                 onClick={onNavigate}
                 key={idx}
                 className={`flex items-center gap-2 py-[10px] px-[24px] ${
-                  pathname === link.href ? active : ""
+                  isActive ? active : ""
                 }`}
               >
                 <Icon size={20} />
@@ -82,7 +62,7 @@ const AsideBar: React.FC<AsideBarProps> = ({ onNavigate }) => {
         </ul>
       </div>
 
-      <Link href={"/"} className="flex items-center gap-1 py-[10px] px-[24px]">
+      <Link href="/" className="flex items-center gap-1 py-[10px] px-[24px]">
         <LogOut /> Logout
       </Link>
     </div>
