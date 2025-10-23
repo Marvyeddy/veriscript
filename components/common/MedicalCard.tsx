@@ -6,7 +6,7 @@ import Locator from "@/public/assets/MapPin2.svg";
 import Star from "@/public/assets/Star.svg";
 import Button from "../ui/Button";
 
-const MedicalCard = () => {
+const MedicalCard = ({ id }: { id: string }) => {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-2.5 bg-white w-full py-4 px-3 sm:py-[20px] sm:px-[14px] rounded-[8px]">
       <div className="flex-1 flex gap-3">
@@ -30,7 +30,7 @@ const MedicalCard = () => {
             <h3 className="font-semibold text-sm text-[#1A1A1A]">
               Doctor ID:{" "}
               <span className="font-medium text-[#808080] text-sm leading-[145%]">
-                001113456
+                {id}
               </span>
             </h3>
           </div>

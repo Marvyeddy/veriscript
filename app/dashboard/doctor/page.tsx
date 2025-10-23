@@ -11,8 +11,10 @@ import Button from "@/components/ui/Button";
 import { MoveDownRight } from "lucide-react";
 
 import { Star } from "lucide-react";
+import { useRouter } from "next/navigation";
 const DoctorPage = () => {
   const [activeTab, setActiveTab] = useState<string>("All");
+  const router = useRouter();
 
   // doctor data state so we can update bookings
   const [doctors, setDoctors] = useState([
@@ -32,7 +34,7 @@ const DoctorPage = () => {
       image: doctor_hero,
       name: "Doctor Benjamin Okoli",
       type: "Paediatrician",
-      doctorId: "00113456",
+      doctorId: "00113457",
       fee: "200 HBAR",
       rating: 4.7,
       distance: "2 metres Away",
@@ -43,7 +45,7 @@ const DoctorPage = () => {
       image: doctor_hero,
       name: "Doctor Benjamin Okoli",
       type: "Paediatrician",
-      doctorId: "00113456",
+      doctorId: "00113458",
       fee: "200 HBAR",
       rating: 4.7,
       distance: "2 metres Away",
@@ -89,8 +91,11 @@ const DoctorPage = () => {
         {filteredDoctors.map((item) => (
           <div
             key={item.id}
-            onClick={() => handleBookDoctor(item.id)}
-            className=" relative w-full flex md:flex-row flex-col items-center justify-between border-b border-gray-100 last:border-none pb-3  bg-white px-3 py-5 md:py-2 gap-4 md:gap-0"
+            onClick={() => {
+              handleBookDoctor(item.id);
+              router.push(`/dashboard/doctor/${item.doctorId}`);
+            }}
+            className=" relative w-full flex md:flex-row flex-col items-center justify-between border-b border-gray-100 last:border-none pb-3  bg-white px-3 py-5 md:py-2 gap-4 md:gap-0 cursor-pointer hover:scale-105 duration-200 transition-all ease-in-out"
           >
             {/* Left side: Doctor info */}
             <div className="flex items-center lg:gap-7 lg:w-1/2 w-full gap-2 ">

@@ -7,7 +7,8 @@ import React from "react";
 import Locator from "@/public/assets/locator2.svg";
 import { Separator } from "@/components/ui/separator";
 
-const ConsultPage = () => {
+const ConsultPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
   return (
     <section className="relative h-full">
       {/* Scrollable container */}
@@ -17,7 +18,7 @@ const ConsultPage = () => {
             Prescription
           </h2>
 
-          <MedicalCard />
+          <MedicalCard id={id} />
 
           <div className="mt-4 sm:mt-6">
             <div>
