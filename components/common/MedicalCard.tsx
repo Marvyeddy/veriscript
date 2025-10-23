@@ -6,7 +6,13 @@ import Locator from "@/public/assets/MapPin2.svg";
 import Star from "@/public/assets/Star.svg";
 import Button from "../ui/Button";
 
-const MedicalCard = ({ id }: { id: string }) => {
+const MedicalCard = ({
+  id,
+  reverse = false,
+}: {
+  id: string;
+  reverse?: boolean;
+}) => {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-2.5 bg-white w-full py-4 px-3 sm:py-[20px] sm:px-[14px] rounded-[8px]">
       <div className="flex-1 flex gap-3">
@@ -47,8 +53,12 @@ const MedicalCard = ({ id }: { id: string }) => {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-row sm:flex-col justify-between items-center sm:items-start sm:space-y-1.5 gap-2 sm:gap-0">
-        <div className="flex flex-col sm:block">
+      <div
+        className={`flex-1 flex flex-row  justify-between items-center sm:items-start sm:space-y-1.5 gap-2 sm:gap-0 ${
+          reverse ? "sm:flex-col-reverse sm:gap-1" : "sm:flex-col"
+        }`}
+      >
+        <div className="flex sm:block flex-col ">
           <h2 className="text-[#808080] text-sm font-medium">Fee:</h2>
 
           <div className="flex items-center gap-x-2">
