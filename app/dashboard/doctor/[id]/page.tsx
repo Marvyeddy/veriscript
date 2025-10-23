@@ -12,7 +12,7 @@ import Cash from "@/public/assets/cash.svg";
 
 const ConsultPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const paid = false;
+  const paid = true;
   return (
     <section className="relative h-full">
       {/* Scrollable container */}
@@ -31,7 +31,7 @@ const ConsultPage = async ({ params }: { params: { id: string } }) => {
 
           <MedicalCard id={id} />
 
-          {paid && (
+          {paid ? (
             <div className="mt-4 sm:mt-6">
               <div>
                 <article className="bg-white rounded-[12px] rounded-tr-none pt-4 px-4 sm:pt-[16px] sm:px-[20px] max-w-full sm:max-w-[480px] pb-2 ml-auto">
@@ -76,31 +76,31 @@ const ConsultPage = async ({ params }: { params: { id: string } }) => {
                 </article>
               </div>
             </div>
-          )}
+          ) : (
+            <div className="mt-[91px] w-fit mx-auto">
+              <h2 className="font-semibold text-[20px] max-md:text-[16px] text-[#4D4D4D] text-center">
+                Please proceed with payment to start consultation
+              </h2>
 
-          <div className="mt-[91px] w-fit mx-auto">
-            <h2 className="font-semibold text-[20px] max-md:text-[16px] text-[#4D4D4D] text-center">
-              Please proceed with payment to start consultation
-            </h2>
+              <div className="bg-[#FCE6E6] border border-[#F18A8A] w-fit py-3 px-[19px] rounded-[7px] mx-auto mt-4">
+                <div className="flex items-center gap-2 text-[#E10000]">
+                  <CircleAlert className="size-[20px] max-md:size-[16px]" />
+                  <span className="font-semibold text-[18px] max-sm:text-[16px]">
+                    Note
+                  </span>
+                </div>
 
-            <div className="bg-[#FCE6E6] border border-[#F18A8A] w-fit py-3 px-[19px] rounded-[7px] mx-auto mt-4">
-              <div className="flex items-center gap-2 text-[#E10000]">
-                <CircleAlert className="size-[20px] max-md:size-[16px]" />
-                <span className="font-semibold text-[18px] max-sm:text-[16px]">
-                  Note
-                </span>
+                <h2 className="text-[#808080] text-sm font-medium max-md:text-xs">
+                  Payment would be deducted from your wallet balance
+                </h2>
               </div>
 
-              <h2 className="text-[#808080] text-sm font-medium max-md:text-xs">
-                Payment would be deducted from your wallet balance
-              </h2>
+              <Button variants="default" className="mx-auto mt-8">
+                <Image src={Cash} alt="cash" loading="lazy" />
+                <p className="text-sm font-medium">Make payment</p>
+              </Button>
             </div>
-
-            <Button variants="default" className="mx-auto mt-8">
-              <Image src={Cash} alt="cash" loading="lazy" />
-              <p className="text-sm font-medium">Make payment</p>
-            </Button>
-          </div>
+          )}
         </div>
 
         {paid && (
