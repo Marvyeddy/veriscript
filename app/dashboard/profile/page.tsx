@@ -287,7 +287,7 @@ const ProfilePage = () => {
               <br /> Sincerely,
               <br />
               <br />
-              Doctor's Chillman Issoryt +234 8123 4567 89
+              Doctor&apos;s Chillman Issoryt +234 8123 4567 89
             </p>
           </div>
         </div>

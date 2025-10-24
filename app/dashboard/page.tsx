@@ -1,10 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Map from "@/public/assets/MapPin.svg";
-import Down from "@/public/assets/CaretDown_black.svg";
-import Img from "@/public/assets/face.svg";
-import Ring from "@/public/assets/Bell.svg";
 import React from "react";
 import Card from "@/components/common/Card";
 import { Input } from "@/components/ui/input";
