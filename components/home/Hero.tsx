@@ -1,11 +1,15 @@
+"use client";
+
 import React from "react";
 import Navbar from "../common/Navbar";
 import Heart from "@/public/assets/Heartbeat.svg";
 import Hero_Img from "@/public/images/Rectangle.png";
 import Image from "next/image";
 import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
   return (
     <section className="relative max-lg:px-4 bg-[url(/images/grid.png)] bg-cover bg-no-repeat bg-center">
       <div className="min-lg:px-6 ">
@@ -33,7 +37,11 @@ const Hero = () => {
             pharmacies for your medication needs.
           </p>
 
-          <Button variants="default" className="w-[216px]">
+          <Button
+            variants="default"
+            className="w-[216px]"
+            onClick={() => router.push("/onboarding")}
+          >
             Get started
           </Button>
         </div>

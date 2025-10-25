@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { FormEvent } from "react";
 import Logo from "@/public/assets/logo.svg";
 import Patient from "@/public/assets/patient.svg";
 import Medical from "@/public/assets/pharmacist.svg";
@@ -7,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Button from "@/components/ui/Button";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const profile = [
   {
@@ -27,6 +30,12 @@ const profile = [
 ];
 
 const Onboarding = () => {
+  const router = useRouter();
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    router.push("/onboarding/register");
+  }
   return (
     <section className="relative">
       <div>
@@ -42,8 +51,12 @@ const Onboarding = () => {
           </p>
         </div>
 
-        <form>
-          <RadioGroup name="profile" className="flex gap-4 max-md:flex-col">
+        <form onSubmit={onSubmit}>
+          <RadioGroup
+            name="profile"
+            className="flex gap-4 max-md:flex-col"
+            required
+          >
             {profile.map((item) => (
               <label
                 key={item.id}
@@ -65,7 +78,11 @@ const Onboarding = () => {
             ))}
           </RadioGroup>
 
-          <Button variants="default" className="flex w-fit items-center mt-8">
+          <Button
+            variants="default"
+            className="flex w-fit items-center mt-8"
+            type="submit"
+          >
             <span className="text-xs">Continue</span>
             <ChevronRight size={15} />
           </Button>
