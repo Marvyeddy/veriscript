@@ -36,11 +36,11 @@ const ConsultPage = async ({ params }: { params: { id: string } }) => {
               <div>
                 <article className="bg-white rounded-[12px] rounded-tr-none pt-4 px-4 sm:pt-[16px] sm:px-[20px] max-w-full sm:max-w-[480px] pb-2 ml-auto">
                   <h3 className="text-xs font-medium text-[#808080] leading-[145%]">
-                    Hi there! I'm reaching out because I'm dealing with high
-                    blood pressure and anxiety. Right now, I'm on Lisinopril for
-                    my blood pressure and Sertraline for my anxiety. I would
-                    really appreciate any advice or if you could help me with a
-                    prescription. Thank you!
+                    Hi there! I&apos;m reaching out because I&apos;m dealing
+                    with high blood pressure and anxiety. Right now, I&apos;m on
+                    Lisinopril for my blood pressure and Sertraline for my
+                    anxiety. I would really appreciate any advice or if you
+                    could help me with a prescription. Thank you!
                   </h3>
 
                   <Separator className="mt-3 sm:mt-[15px] mb-2 sm:mb-[8px]" />
@@ -52,9 +52,9 @@ const ConsultPage = async ({ params }: { params: { id: string } }) => {
               <div className="mt-4 sm:mt-[24px] mb-16 sm:mb-[72px]">
                 <article className="bg-[#E6F7EE] rounded-[12px] rounded-tl-none pt-4 px-4 sm:pt-[16px] sm:px-[20px] max-w-full sm:max-w-[480px] pb-2">
                   <h3 className="text-xs font-medium text-[#808080] leading-[145%]">
-                    Hello! Thank you for reaching out. It's important to manage
-                    both high blood pressure and anxiety effectively. I have
-                    sent your diagnosis and prescription to the pharmacist
+                    Hello! Thank you for reaching out. It&apos;s important to
+                    manage both high blood pressure and anxiety effectively. I
+                    have sent your diagnosis and prescription to the pharmacist
                     closest to you. let me know if you have more requests
                   </h3>
 
