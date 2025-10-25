@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { FormEvent } from "react";
 import Logo from "@/public/assets/logo.svg";
 import Profile from "@/public/assets/profile.svg";
 import Calendar from "@/public/assets/calendar.svg";
@@ -18,6 +18,11 @@ import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const router = useRouter();
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    router.push("/dashboard");
+  };
+
   return (
     <section className="relative ">
       <div className="lg:pr-12 ">
@@ -44,7 +49,7 @@ const RegisterForm = () => {
         </div>
 
         {/* ==================== FORM ==================== */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={onSubmit}>
           {/* FULL NAME */}
           <div>
             <label htmlFor="full_name" className="text-[#0A0D14] font-medium">
@@ -197,8 +202,8 @@ const RegisterForm = () => {
           {/* SUBMIT BUTTON */}
           <Button
             variants="default"
-            type="submit"
             className="w-full flex gap-2 items-center justify-center"
+            type="submit"
           >
             Continue
             <ChevronRight size={20} />

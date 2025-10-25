@@ -3,7 +3,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -11,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Eye, MoreVertical, MoreVerticalIcon } from "lucide-react";
+import { MoreVertical, MoreVerticalIcon } from "lucide-react";
 import Dark from "@/public/assets/hbar_dark.svg";
 import Image from "next/image";
 

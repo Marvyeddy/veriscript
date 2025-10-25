@@ -8,9 +8,11 @@ import Link from "next/link";
 import Button from "../ui/Button";
 import { useMobile } from "@/hooks/useMobile";
 import { Menu } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const isMobile = useMobile();
+  const router = useRouter();
   return (
     <nav className="flex items-center justify-between max-w-[1146px] mx-auto border-2 border-[#E6F7EE] py-[29px] min-md:px-[32px] px-4 min-md:mt-[41px] mt-6 rounded-xl">
       <div>
@@ -32,7 +34,9 @@ const Navbar = () => {
             <Link href={"/"}>Pricing</Link>
           </li>
 
-          <Button variants="default">Get started</Button>
+          <Button variants="default" onClick={() => router.push("/onboarding")}>
+            Get started
+          </Button>
         </ul>
       )}
     </nav>
