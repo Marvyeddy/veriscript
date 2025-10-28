@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
 
-const DoctorRegisterForm = () => {
+const PharmacistRegisterForm = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ const DoctorRegisterForm = () => {
     email: "",
     location: "",
     gender: "",
-    specialization: "",
+    area_of_expertise: "",
     license: null as File | null,
     password: "",
     confirmPassword: "",
@@ -55,7 +55,7 @@ const DoctorRegisterForm = () => {
       alert("Passwords do not match!");
       return;
     }
-    console.log("Doctor Registration Data:", formData);
+    console.log("Pharmacist Registration Data:", formData);
     alert("Registration complete!");
     router.push("/dashboard");
   };
@@ -92,7 +92,7 @@ const DoctorRegisterForm = () => {
         {/* Header */}
         <div className="mt-[31px] mb-[24px] font-jakarta">
           <h1 className="text-[32px] font-semibold leading-[107%]">
-            Doctor Registration
+            Pharmacist Registration
           </h1>
           <p className="font-semibold text-[16px] text-[#808080] mt-3">
             {step === 1
@@ -131,7 +131,7 @@ const DoctorRegisterForm = () => {
                   <Input
                     id="full_name"
                     name="full_name"
-                    placeholder="Dr. John Doe"
+                    placeholder="Pharm. Jane Doe"
                     value={formData.full_name}
                     onChange={handleChange}
                     className="flex-1 pl-[38px] pr-[38px] border border-[#E2E4E9] rounded-md"
@@ -183,7 +183,7 @@ const DoctorRegisterForm = () => {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="doctor@example.com"
+                    placeholder="pharmacist@example.com"
                     value={formData.email}
                     onChange={handleChange}
                     className="flex-1 pl-[38px] pr-[38px] border border-[#E2E4E9] rounded-md"
@@ -263,20 +263,20 @@ const DoctorRegisterForm = () => {
 
           {step === 2 && (
             <>
-              {/* SPECIALIZATION */}
+              {/* AREA OF EXPERTISE */}
               <div>
                 <label
-                  htmlFor="specialization"
+                  htmlFor="area_of_expertise"
                   className="text-[#0A0D14] font-medium"
                 >
-                  Specialization <span className="text-red-500">*</span>
+                  Area of Expertise <span className="text-red-500">*</span>
                 </label>
                 <Input
                   required
-                  id="specialization"
-                  name="specialization"
-                  placeholder="e.g. Cardiologist, Pediatrician"
-                  value={formData.specialization}
+                  id="area_of_expertise"
+                  name="area_of_expertise"
+                  placeholder="e.g. Clinical Pharmacology, Community Pharmacy"
+                  value={formData.area_of_expertise}
                   onChange={handleChange}
                   className="lg:w-[528px] border border-[#E2E4E9] rounded-md"
                 />
@@ -378,4 +378,4 @@ const DoctorRegisterForm = () => {
   );
 };
 
-export default DoctorRegisterForm;
+export default PharmacistRegisterForm;

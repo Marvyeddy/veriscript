@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import Logo from "@/public/assets/logo.svg";
 import Patient from "@/public/assets/patient.svg";
-import Medical from "@/public/assets/pharmacist.svg";
+import Pharmacist from "@/public/assets/pharmacist.svg";
+import Doctor from "@/public/assets/pharmacist.svg"; // optional separate image
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Button from "@/components/ui/Button";
 import { ChevronRight } from "lucide-react";
@@ -20,22 +21,44 @@ const profile = [
   {
     id: "pharmacist",
     text: "Pharmacist",
-    img: Medical,
+    img: Pharmacist,
   },
   {
     id: "doctor",
     text: "Doctor",
-    img: Medical,
+    img: Doctor,
   },
 ];
 
 const Onboarding = () => {
   const router = useRouter();
+  const [selectedProfile, setSelectedProfile] = useState<string>("");
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    router.push("/onboarding/register");
+
+    if (!selectedProfile) {
+      alert("Please select a profile type before continuing.");
+      return;
+    }
+
+    // Redirect based on selected profile
+    switch (selectedProfile) {
+      case "patient":
+        router.push("/onboarding/register");
+        break;
+      case "doctor":
+        router.push("/onboarding/doctorRegister");
+        break;
+      case "pharmacist":
+        router.push("/onboarding/pharmacistRegister");
+        break;
+      default:
+        router.push("/onboarding");
+        break;
+    }
   }
+
   return (
     <section className="relative">
       <div>
@@ -55,13 +78,19 @@ const Onboarding = () => {
           <RadioGroup
             name="profile"
             className="flex gap-4 max-md:flex-col"
+            value={selectedProfile}
+            onValueChange={(val) => setSelectedProfile(val)}
             required
           >
             {profile.map((item) => (
               <label
                 key={item.id}
                 htmlFor={item.id}
-                className="flex gap-3 cursor-pointer border-2 w-[168px] py-[9px] px-[10px] rounded-[13px] "
+                className={`flex gap-3 cursor-pointer border-2 w-[168px] py-[9px] px-[10px] rounded-[13px] transition-all ${
+                  selectedProfile === item.id
+                    ? "border-[#00B155] bg-green-50"
+                    : "border-gray-200"
+                }`}
               >
                 <RadioGroupItem
                   id={item.id}
@@ -91,7 +120,7 @@ const Onboarding = () => {
         <p className="text-[#35C178] mt-[31px]">
           Already have an account?{" "}
           <Link
-            href={"/"}
+            href={"/onboarding/signin"}
             className="text-purple-500 font-semibold hover:underline"
           >
             Sign in
