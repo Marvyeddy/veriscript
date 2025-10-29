@@ -42,6 +42,7 @@ const ProfilePage = () => {
       if (!response.ok) throw new Error("Failed to fetch profile");
       const data = await response.json();
       setProfile(data);
+      console.log(data)
     } catch (error) {
       toast({
         title: "Error",

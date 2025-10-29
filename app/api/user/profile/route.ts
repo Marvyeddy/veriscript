@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
     await connectDB();
 
     const profile = await User.findById(user.userId).select("-password").lean();
+    console.log('Profile', profile)
 
     return NextResponse.json(profile);
   } catch (error) {

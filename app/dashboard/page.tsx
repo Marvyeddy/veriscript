@@ -1,4 +1,7 @@
 "use client"
+import { useAuth } from "@/hooks/use-auth"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
 import Card from "@/components/common/Card"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
@@ -17,8 +20,24 @@ const TableLink = [
 
 const Dashboard = () => {
   const pathname = usePathname()
+  const router = useRouter()
   const active = "text-[#03B156] border-b-2 border-[#03B156]"
   const { data: user } = useCurrentUser()
+  const { user: authUser } = useAuth()
+
+  useEffect(() => {
+    if (authUser?.userType === "doctor") {
+      router.push("/dashboard/doctor-portal")
+    } else if (authUser?.userType === "pharmacist") {
+      router.push("/dashboard/pharmacy-portal")
+    } else if (authUser?.userType === "admin") {
+      router.push("/dashboard/admin")
+    }
+  }, [authUser, router])
+
+  if (authUser?.userType !== "patient") {
+    return null
+  }
 
   return (
     <div className="px-4 sm:px-6  py-4 sm:py-6 lg:py-[31px] h-full border">

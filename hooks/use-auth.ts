@@ -80,12 +80,9 @@ export function useLogout() {
 
   return async () => {
     try {
-      // Invalidate server cookie
       await apiClient("/auth/logout", { method: "POST" });
     } catch (e) {
-      // ignore network errors on logout
     }
-    // Clear client state regardless
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
     queryClient.clear();

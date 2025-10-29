@@ -12,14 +12,12 @@ export async function GET(request: NextRequest) {
     }
 
     await connectDB()
-
-    // Get pharmacy for this user
+console.log('Pham', user)
     const pharmacy = await Pharmacy.findOne({ userId: user.userId })
     if (!pharmacy) {
       return NextResponse.json({ success: false, error: "Pharmacy not found" }, { status: 404 })
     }
 
-    // Get all referrals for this pharmacy
     const referrals = await Referral.find({ pharmacyId: pharmacy._id })
       .populate("doctorId", "specialization")
       .populate("patientId", "fullName email phone")

@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { connectDB } from "@/lib/db"
 import { Appointment } from "@/lib/models/appointment"
+import { Doctor } from "@/lib/models/doctor"
 import { verifyAuth } from "@/lib/auth"
 
 export async function GET(request: NextRequest) {
@@ -13,8 +14,22 @@ export async function GET(request: NextRequest) {
     await connectDB()
     const searchParams = request.nextUrl.searchParams
     const status = searchParams.get("status")
+    const role = searchParams.get("role")
 
-    const query: any = { patientId: user.userId }
+    const query: any = {}
+
+    if (role === "doctor") {
+      // Find the doctor record for this user
+      const doctorRecord = await Doctor.findOne({ userId: user.userId })
+      if (!doctorRecord) {
+        return NextResponse.json({ success: false, error: "Doctor profile not found" }, { status: 404 })
+      }
+      query.doctorId = doctorRecord._id
+    } else {
+      // Default to patient view
+      query.patientId = user.userId
+    }
+
     if (status) {
       query.status = status
     }
