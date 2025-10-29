@@ -7,7 +7,7 @@ interface User {
   id: string;
   email: string;
   fullName: string;
-  userType: "patient" | "doctor" | "pharmacist";
+  userType: "patient" | "doctor" | "pharmacist" | "admin";
 }
 
 interface LoginInput {
@@ -95,10 +95,24 @@ export function useLogout() {
 export function useCurrentUser() {
   return useQuery({
     queryKey: ["user"],
-    queryFn: () => {
+    queryFn: async () => {
+      if (typeof window === "undefined") return null;
       const user = localStorage.getItem("user");
       return user ? JSON.parse(user) : null;
     },
-    staleTime: Number.POSITIVE_INFINITY,
+    staleTime: Infinity,
+    enabled: typeof window !== "undefined",
   });
+}
+export function useAuth() {
+  const isBrowser = typeof window !== "undefined";
+
+  const { data: user, isLoading } =  useCurrentUser();
+  const displayName = user?.fullName || user?.email?.split("@")[0] || "User";
+
+  return {
+    user,
+    isLoading: isBrowser && isLoading, 
+    displayName,
+  };
 }

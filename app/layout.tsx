@@ -1,36 +1,25 @@
-import type React from "react";
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/query-provider";
-import { Toaster } from "@/components/ui/toaster";
 
-const Jarkata = Plus_Jakarta_Sans({
-  variable: "--font-jakarta-sans",
-  subsets: ["latin"],
-});
-
-const DM = DM_Sans({
-  variable: "--font-DM_Sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Veriscript",
-  description: "Debunk wrong prescriptions",
-  generator: "v0.app",
+  description: "Your prescription management platform",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={`${Jarkata.variable} ${DM.variable} antialiased`}>
+      <body className={inter.className}>
         <QueryProvider>{children}</QueryProvider>
-        <Toaster />
       </body>
     </html>
   );
