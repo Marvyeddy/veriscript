@@ -2,13 +2,46 @@
 import { useState } from "react";
 import { Mail, Lock } from "lucide-react";
 import Image from "next/image";
-
 import { useRouter } from "next/navigation";
+import { useLogin } from "@/hooks/use-auth";
+import { useToast } from "@/hooks/use-toast";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { toast } = useToast();
+  const loginMutation = useLogin();
+
+  async function handleLogin() {
+    if (!email || !password) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      await loginMutation.mutateAsync({ email, password });
+      toast({
+        title: "Success",
+        description: "Login successful! Redirecting...",
+        variant: "success",
+      });
+      // Redirect based on user type or to dashboard
+      router.push("/dashboard");
+    } catch (err: any) {
+      const errorMessage = err?.message || "Login failed. Please try again.";
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    }
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-white font-jakarta">
       <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
@@ -43,59 +76,76 @@ export default function SignInPage() {
           Please fill in the required data to proceed
         </p>
 
-        {/* Email Input */}
-        <div className="mb-4 text-left">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email Address
-          </label>
-          <div className="relative">
-            <Mail
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              size={18}
-            />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="hello@alignui.com"
-              className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-          </div>
-        </div>
-
-        {/* Password Input */}
-        <div className="mb-6 text-left">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Password
-          </label>
-          <div className="relative">
-            <Lock
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              size={18}
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-            <a
-              href="#"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-green-600 hover:underline"
-            >
-              Forgot Password?
-            </a>
-          </div>
-        </div>
-
-        {/* Continue Button */}
-        <button
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition-colors"
-          onClick={() => router.push("/dashboard")}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
         >
-          Continue →
-        </button>
+          {/* Email Input */}
+          <div className="mb-4 text-left">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <div className="relative">
+              <Mail
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                size={18}
+              />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="hello@alignui.com"
+                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Password Input */}
+          <div className="mb-6 text-left">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <div className="relative">
+              <Lock
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                size={18}
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
+              <a
+                href="#"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-green-600 hover:underline"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+
+          {/* Continue Button */}
+          <button
+            type="submit"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={loginMutation.isPending}
+          >
+            {loginMutation.isPending ? (
+              <>
+                <Spinner />
+                Logging in...
+              </>
+            ) : (
+              <>Continue →</>
+            )}
+          </button>
+        </form>
       </div>
     </div>
   );

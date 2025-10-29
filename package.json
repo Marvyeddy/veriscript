@@ -6,7 +6,8 @@
     "build": "next build --turbopack",
     "dev": "next dev --turbopack",
     "lint": "eslint",
-    "start": "next start"
+    "start": "next start",
+    "db:clear": "node scripts/clear-db.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "latest",
@@ -65,6 +66,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
